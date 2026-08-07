@@ -1,0 +1,6 @@
+{
+  "name": "CryptoVest - Investment & Loan Platform",
+  "description": "Secure crypto investment and loan platform with user dashboard, KYC verification, live asset tracking, deposit/withdrawal requests, and admin management panel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
