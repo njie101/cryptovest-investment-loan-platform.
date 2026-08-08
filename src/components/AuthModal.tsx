@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { X, Lock, Mail, User as UserIcon, Sparkles, AlertCircle } from 'lucide-react';
+import { X, Lock, Mail, User as UserIcon, AlertCircle } from 'lucide-react';
 
 export const AuthModal: React.FC = () => {
   const { isAuthModalOpen, closeAuthModal, authMode, login, register, openAuthModal } = useApp();
@@ -19,11 +19,11 @@ export const AuthModal: React.FC = () => {
     if (authMode === 'login') {
       const ok = login(email, password);
       if (!ok) {
-        setError('Invalid credentials. Try using one of the quick fill demo buttons below.');
+        setError('Invalid email or password. Please check your credentials and try again.');
       }
     } else {
       if (!name.trim() || !email.trim()) {
-        setError('Please fill in all required fields');
+        setError('Please fill in all required fields.');
         return;
       }
       const ok = register(name, email, password);
@@ -31,12 +31,6 @@ export const AuthModal: React.FC = () => {
         setError('An account with this email address already exists.');
       }
     }
-  };
-
-  const handleFillDemoUser = () => {
-    setEmail('user@cryptovest.io');
-    setPassword('user123');
-    login('user@cryptovest.io', 'user123');
   };
 
   return (
@@ -128,21 +122,7 @@ export const AuthModal: React.FC = () => {
           </button>
         </form>
 
-        {/* Quick Demo Credentials Autofill */}
-        <div className="mt-6 pt-5 border-t border-slate-800 text-center">
-          <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center justify-center gap-1">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-400" /> Quick Client One-Click Demo Login
-          </p>
-          <button
-            type="button"
-            onClick={handleFillDemoUser}
-            className="w-full py-2.5 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition"
-          >
-            Log In as Demo Client
-          </button>
-        </div>
-
-        <div className="mt-4 text-center text-xs text-slate-400">
+        <div className="mt-6 text-center text-xs text-slate-400">
           {authMode === 'login' ? (
             <p>
               Don't have an account?{' '}
